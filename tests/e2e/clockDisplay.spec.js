@@ -38,6 +38,6 @@ test('analog clock canvas has correct dimensions', async ({ page }) => {
   const width = await canvas.getAttribute('width');
   const height = await canvas.getAttribute('height');
 
-  expect(width).toBe('400');
-  expect(height).toBe('400');
+  expect(width).toBe('550');
+  expect(height).toBe('550');
 });

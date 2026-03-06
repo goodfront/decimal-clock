@@ -12,12 +12,32 @@ const ONES_HAND_RADIUS = 0.8;
 const ONES_HAND_WIDTH = 3;
 
 /**
+ * T022, T023: Calculate the angle for a decimal numeral with 5 at top, 0 at bottom
+ * @param {number} numeralValue - Numeral value (0-9)
+ * @returns {number} Angle in radians
+ */
+function calculateNumeralAngle(numeralValue) {
+  // Formula: (i / 10) × 2π + π/2
+  // This places 0 at bottom (π/2 = 90°) and 5 at top (3π/2 = 270°)
+  return (numeralValue / NUMERAL_COUNT) * 2 * Math.PI + Math.PI / 2;
+}
+
+/**
  * Creates an analog clock controller
  * @param {HTMLCanvasElement} canvas - Canvas element for rendering
  * @returns {Object} Controller with render, resize, and destroy methods
  */
 export function createAnalogClock(canvas) {
   const ctx = canvas.getContext('2d');
+
+  // T036: Sync canvas resolution with CSS size on initialization
+  const cssWidth = canvas.offsetWidth;
+  const cssHeight = canvas.offsetHeight;
+  if (canvas.width !== cssWidth || canvas.height !== cssHeight) {
+    canvas.width = cssWidth;
+    canvas.height = cssHeight;
+  }
+
   let clockFace = calculateClockFace();
 
   function calculateClockFace() {
@@ -27,8 +47,7 @@ export function createAnalogClock(canvas) {
 
     const numerals = [];
     for (let i = 0; i < NUMERAL_COUNT; i++) {
-      // 0 is at bottom (270° in standard coords = 0° for us)
-      const angle = (i / NUMERAL_COUNT) * 2 * Math.PI - Math.PI / 2;
+      const angle = calculateNumeralAngle(i); // T022: Use extracted function
       numerals.push({
         value: i,
         angle,
@@ -46,12 +65,12 @@ export function createAnalogClock(canvas) {
     // Draw circle
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-    ctx.strokeStyle = '#333';
+    ctx.strokeStyle = '#ffffff'; // T010: White border for dark theme
     ctx.lineWidth = 2;
     ctx.stroke();
 
     // Draw numerals
-    ctx.fillStyle = '#333';
+    ctx.fillStyle = '#ffffff'; // T011: White numerals for dark theme
     ctx.font = '20px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -63,15 +82,16 @@ export function createAnalogClock(canvas) {
     // Draw center dot
     ctx.beginPath();
     ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
-    ctx.fillStyle = '#333';
+    ctx.fillStyle = '#ffffff'; // T012: White center dot for dark theme
     ctx.fill();
   }
 
-  function drawHand(length, angle, width, color = '#333') {
+  function drawHand(length, angle, width, color = '#ffffff') {
     const { centerX, centerY } = clockFace;
 
     // Convert decimal time angle to canvas angle (0° at bottom, clockwise)
-    const radians = (angle / 360) * 2 * Math.PI - Math.PI / 2;
+    // Match the numeral positioning: (value / 10) × 2π + π/2
+    const radians = (angle / 360) * 2 * Math.PI + Math.PI / 2;
 
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
@@ -93,7 +113,8 @@ export function createAnalogClock(canvas) {
     drawClockFace();
 
     // Calculate hand angles (0-360)
-    const tensAngle = (decimalTime.tens / 10) * 360;
+    // Tens hand moves smoothly: base position + fractional progress from ones
+    const tensAngle = ((decimalTime.tens + decimalTime.ones / 10) / 10) * 360;
     const onesAngle = (decimalTime.ones / 10) * 360;
 
     // Draw hands (tens first, then ones on top)
@@ -101,17 +122,27 @@ export function createAnalogClock(canvas) {
       clockFace.radius * TENS_HAND_RADIUS,
       tensAngle,
       TENS_HAND_WIDTH,
-      '#666'
+      '#ffffff' // T013: White tens hand for dark theme
     );
     drawHand(
       clockFace.radius * ONES_HAND_RADIUS,
       onesAngle,
       ONES_HAND_WIDTH,
-      '#333'
+      '#ffffff' // T014: White ones hand for dark theme
     );
   }
 
   function resize() {
+    // T036: Sync canvas resolution with CSS size to prevent blur
+    const cssWidth = canvas.offsetWidth;
+    const cssHeight = canvas.offsetHeight;
+
+    // Only update if size actually changed
+    if (canvas.width !== cssWidth || canvas.height !== cssHeight) {
+      canvas.width = cssWidth;
+      canvas.height = cssHeight;
+    }
+
     clockFace = calculateClockFace();
     // Note: Caller should trigger a render after resize
   }
