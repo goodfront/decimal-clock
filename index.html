@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decimal Clock</title>
+</head>
+<body>
+  <main role="main" aria-label="Decimal Clock">
+    <section aria-labelledby="analog-clock-heading">
+      <h2 id="analog-clock-heading" class="sr-only">Analog Clock</h2>
+      <canvas id="analog-clock" width="400" height="400" aria-label="Analog decimal clock face">
+        <p>Your browser does not support HTML5 Canvas, which is required for the analog clock display.</p>
+      </canvas>
+      <div aria-live="polite" aria-atomic="true" class="sr-only">
+        Current decimal time: <span id="time-announcement"></span>
+      </div>
+    </section>
+
+    <section aria-labelledby="digital-clock-heading">
+      <h2 id="digital-clock-heading" class="sr-only">Digital Clock</h2>
+      <time id="digital-clock" aria-label="Digital decimal time display">00.00</time>
+    </section>
+  </main>
+
+  <script type="module" src="/src/index.js"></script>
+</body>
+</html>
