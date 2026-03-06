@@ -29,6 +29,15 @@ function calculateNumeralAngle(numeralValue) {
  */
 export function createAnalogClock(canvas) {
   const ctx = canvas.getContext('2d');
+
+  // T036: Sync canvas resolution with CSS size on initialization
+  const cssWidth = canvas.offsetWidth;
+  const cssHeight = canvas.offsetHeight;
+  if (canvas.width !== cssWidth || canvas.height !== cssHeight) {
+    canvas.width = cssWidth;
+    canvas.height = cssHeight;
+  }
+
   let clockFace = calculateClockFace();
 
   function calculateClockFace() {
@@ -81,7 +90,8 @@ export function createAnalogClock(canvas) {
     const { centerX, centerY } = clockFace;
 
     // Convert decimal time angle to canvas angle (0° at bottom, clockwise)
-    const radians = (angle / 360) * 2 * Math.PI - Math.PI / 2;
+    // Match the numeral positioning: (value / 10) × 2π + π/2
+    const radians = (angle / 360) * 2 * Math.PI + Math.PI / 2;
 
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
@@ -103,7 +113,8 @@ export function createAnalogClock(canvas) {
     drawClockFace();
 
     // Calculate hand angles (0-360)
-    const tensAngle = (decimalTime.tens / 10) * 360;
+    // Tens hand moves smoothly: base position + fractional progress from ones
+    const tensAngle = ((decimalTime.tens + decimalTime.ones / 10) / 10) * 360;
     const onesAngle = (decimalTime.ones / 10) * 360;
 
     // Draw hands (tens first, then ones on top)
@@ -122,6 +133,16 @@ export function createAnalogClock(canvas) {
   }
 
   function resize() {
+    // T036: Sync canvas resolution with CSS size to prevent blur
+    const cssWidth = canvas.offsetWidth;
+    const cssHeight = canvas.offsetHeight;
+
+    // Only update if size actually changed
+    if (canvas.width !== cssWidth || canvas.height !== cssHeight) {
+      canvas.width = cssWidth;
+      canvas.height = cssHeight;
+    }
+
     clockFace = calculateClockFace();
     // Note: Caller should trigger a render after resize
   }
