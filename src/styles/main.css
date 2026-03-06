@@ -1,3 +1,11 @@
+/* T016: Color constants for dark theme */
+:root {
+  --color-page-bg: #1a1a1a;
+  --color-clock-face-bg: #2d2d2d;
+  --color-text: #ffffff;
+  --color-shadow: rgba(0, 0, 0, 0.5);
+}
+
 /* CSS Reset and Base Styles */
 *,
 *::before,
@@ -14,7 +22,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #1a1a1a; /* T007: Very dark grey background */
+  background: var(--color-page-bg); /* T017: Use CSS variable */
 }
 
 /* Screen Reader Only utility class */
@@ -38,7 +46,7 @@ main {
   justify-content: center;
   min-height: 100vh;
   padding: 2rem;
-  background: #1a1a1a; /* T007: Replaced gradient with very dark grey */
+  background: var(--color-page-bg); /* T017: Use CSS variable */
 }
 
 section {
@@ -50,9 +58,9 @@ section {
 
 /* Analog clock styling */
 #analog-clock {
-  background: #2d2d2d; /* T008: Slightly lighter grey clock face */
+  background: var(--color-clock-face-bg); /* T017: Use CSS variable */
   border-radius: 50%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* T015: Adjusted shadow for dark theme */
+  box-shadow: 0 10px 30px var(--color-shadow); /* T017: Use CSS variable */
   display: block;
 }
 
@@ -60,8 +68,8 @@ section {
 #digital-clock {
   font-size: 3rem;
   font-weight: 700;
-  color: white;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  color: var(--color-text); /* T017: Use CSS variable */
+  text-shadow: 0 2px 10px var(--color-shadow); /* T017: Use CSS variable */
   font-family: 'Courier New', Courier, monospace;
   letter-spacing: 0.1em;
   margin-top: 2rem;
