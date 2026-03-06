@@ -121,29 +121,29 @@ Repository uses single-project structure:
 
 > **CRITICAL: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T024 [P] [US3] Write e2e test for desktop sizing (1440px viewport) in tests/e2e/responsive.spec.js (verify analog = 650px, digital = 4rem)
-- [ ] T025 [P] [US3] Write e2e test for laptop sizing (1024px viewport) in tests/e2e/responsive.spec.js (verify analog = 550px, digital = 4rem)
-- [ ] T026 [P] [US3] Write e2e test for tablet sizing (768px viewport) in tests/e2e/responsive.spec.js (verify analog = 450px, digital = 3rem)
-- [ ] T027 [P] [US3] Write e2e test for mobile sizing (480px viewport) in tests/e2e/responsive.spec.js (verify analog = 350px, digital = 2rem)
-- [ ] T028 [P] [US3] Write e2e test for small mobile sizing (320px viewport) in tests/e2e/responsive.spec.js (verify analog = 280px, digital = 1.5rem)
+- [X] T024 [P] [US3] Write e2e test for desktop sizing (1440px viewport) in tests/e2e/responsive.spec.js (verify analog = 650px, digital = 4rem)
+- [X] T025 [P] [US3] Write e2e test for laptop sizing (1024px viewport) in tests/e2e/responsive.spec.js (verify analog = 550px, digital = 4rem)
+- [X] T026 [P] [US3] Write e2e test for tablet sizing (768px viewport) in tests/e2e/responsive.spec.js (verify analog = 450px, digital = 3rem)
+- [X] T027 [P] [US3] Write e2e test for mobile sizing (480px viewport) in tests/e2e/responsive.spec.js (verify analog = 350px, digital = 2rem)
+- [X] T028 [P] [US3] Write e2e test for small mobile sizing (320px viewport) in tests/e2e/responsive.spec.js (verify analog = 280px, digital = 1.5rem)
 
 **Checkpoint**: Run e2e tests - all new tests MUST fail. Commit tests before implementation.
 
 ### Implementation for User Story 3 (Green Phase)
 
-- [ ] T029 [US3] Update default canvas size to 550px in index.html (width and height attributes on #analog-clock canvas)
-- [ ] T030 [US3] Update default analog clock CSS size to 550px in src/styles/main.css (#analog-clock width/height)
-- [ ] T031 [US3] Update default digital clock font size to 4rem in src/styles/main.css (#digital-clock font-size)
-- [ ] T032 [US3] Add large desktop media query (min-width: 1440px) with 650px analog clock in src/styles/main.css
-- [ ] T033 [US3] Update tablet media query (max-width: 1024px) with 450px analog, 3rem digital in src/styles/main.css
-- [ ] T034 [US3] Update mobile media query (max-width: 768px) with 350px analog, 2rem digital in src/styles/main.css
-- [ ] T035 [US3] Update small mobile media query (max-width: 480px) with 280px analog, 1.5rem digital in src/styles/main.css
+- [X] T029 [US3] Update default canvas size to 550px in index.html (width and height attributes on #analog-clock canvas)
+- [X] T030 [US3] Update default analog clock CSS size to 550px in src/styles/main.css (#analog-clock width/height)
+- [X] T031 [US3] Update default digital clock font size to 4rem in src/styles/main.css (#digital-clock font-size)
+- [X] T032 [US3] Add large desktop media query (min-width: 1440px) with 650px analog clock in src/styles/main.css
+- [X] T033 [US3] Update tablet media query (max-width: 1024px) with 450px analog, 3rem digital in src/styles/main.css
+- [X] T034 [US3] Update mobile media query (max-width: 768px) with 350px analog, 2rem digital in src/styles/main.css
+- [X] T035 [US3] Update small mobile media query (max-width: 480px) with 280px analog, 1.5rem digital in src/styles/main.css
 
 **Checkpoint**: Run e2e tests - all User Story 3 tests should now pass. Test manually at all breakpoints. User Story 3 complete.
 
 ### Refactor for User Story 3 (Refactor Phase)
 
-- [ ] T036 [US3] Verify canvas resolution sync with CSS size in src/components/ClockPage/ClockPage.js (ensure canvas.width/height match offsetWidth/offsetHeight)
+- [X] T036 [US3] Verify canvas resolution sync with CSS size in src/components/ClockPage/ClockPage.js (ensure canvas.width/height match offsetWidth/offsetHeight)
 
 **Checkpoint**: Tests still pass. All responsive sizes work correctly. User Story 3 complete and independently functional.
 
@@ -153,10 +153,10 @@ Repository uses single-project structure:
 
 **Purpose**: Improvements that affect multiple user stories and final validation
 
-- [ ] T037 [P] Update visual regression baseline screenshots with `npm run test:e2e -- --update-snapshots`
-- [ ] T038 Run full test suite to verify all tests pass with `npm run test && npm run test:e2e`
-- [ ] T039 [P] Run linter and fix any issues with `npm run lint`
-- [ ] T040 [P] Run formatter on all modified files with `npm run format`
+- [X] T037 [P] Update visual regression baseline screenshots with `npm run test:e2e -- --update-snapshots`
+- [X] T038 Run full test suite to verify all tests pass with `npm run test && npm run test:e2e`
+- [X] T039 [P] Run linter and fix any issues with `npm run lint`
+- [X] T040 [P] Run formatter on all modified files with `npm run format`
 - [ ] T041 Verify performance with DevTools (60fps maintained, <2s load, <50MB memory)
 - [ ] T042 Manual accessibility audit with Lighthouse (verify 100% score or document issues)
 - [ ] T043 Cross-browser testing (Chrome, Firefox, Safari, Edge)

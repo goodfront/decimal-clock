@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+coverage/
+
+# Test output
+.nyc_output/
+
+# Cache
+.cache/
+.vite/
+
+# Generated files
+*.min.js
