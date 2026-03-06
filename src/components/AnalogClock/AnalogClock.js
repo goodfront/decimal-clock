@@ -46,12 +46,12 @@ export function createAnalogClock(canvas) {
     // Draw circle
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-    ctx.strokeStyle = '#333';
+    ctx.strokeStyle = '#ffffff'; // T010: White border for dark theme
     ctx.lineWidth = 2;
     ctx.stroke();
 
     // Draw numerals
-    ctx.fillStyle = '#333';
+    ctx.fillStyle = '#ffffff'; // T011: White numerals for dark theme
     ctx.font = '20px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -63,11 +63,11 @@ export function createAnalogClock(canvas) {
     // Draw center dot
     ctx.beginPath();
     ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
-    ctx.fillStyle = '#333';
+    ctx.fillStyle = '#ffffff'; // T012: White center dot for dark theme
     ctx.fill();
   }
 
-  function drawHand(length, angle, width, color = '#333') {
+  function drawHand(length, angle, width, color = '#ffffff') {
     const { centerX, centerY } = clockFace;
 
     // Convert decimal time angle to canvas angle (0° at bottom, clockwise)
@@ -101,13 +101,13 @@ export function createAnalogClock(canvas) {
       clockFace.radius * TENS_HAND_RADIUS,
       tensAngle,
       TENS_HAND_WIDTH,
-      '#666'
+      '#ffffff' // T013: White tens hand for dark theme
     );
     drawHand(
       clockFace.radius * ONES_HAND_RADIUS,
       onesAngle,
       ONES_HAND_WIDTH,
-      '#333'
+      '#ffffff' // T014: White ones hand for dark theme
     );
   }
 

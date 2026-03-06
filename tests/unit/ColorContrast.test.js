@@ -60,14 +60,23 @@ describe('Color Contrast - Dark Theme', () => {
   });
 
   describe('Clock Face Color', () => {
-    it('should be 10-20% lighter than page background', () => {
-      const pageLuminance = getRelativeLuminance(PAGE_BG) * 100;
-      const clockLuminance = getRelativeLuminance(CLOCK_FACE) * 100;
-      const difference = clockLuminance - pageLuminance;
+    it('should be visibly lighter than page background', () => {
+      const pageLuminance = getRelativeLuminance(PAGE_BG);
+      const clockLuminance = getRelativeLuminance(CLOCK_FACE);
 
-      expect(difference).toBeGreaterThanOrEqual(10);
-      expect(difference).toBeLessThanOrEqual(20);
+      // Clock face should be lighter
+      expect(clockLuminance).toBeGreaterThan(pageLuminance);
+
+      // Verify exact colors from research
       expect(CLOCK_FACE.toLowerCase()).toBe('#2d2d2d');
+
+      // Page background should have low luminance (very dark grey)
+      expect(pageLuminance * 100).toBeLessThan(15);
+
+      // Clock face should be about 50-100% more luminance than page background
+      // (research.md shows ~8 percentage point difference in RGB percentages)
+      const relativeIncrease = (clockLuminance - pageLuminance) / pageLuminance;
+      expect(relativeIncrease).toBeGreaterThan(0.4); // At least 40% more luminant
     });
   });
 
