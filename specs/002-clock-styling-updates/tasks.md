@@ -90,22 +90,22 @@ Repository uses single-project structure:
 
 > **CRITICAL: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T018 [P] [US2] Write unit test for numeral angle calculation in tests/unit/AnalogClock.test.js (test angle for numeral 0 = π/2, numeral 5 = 3π/2)
-- [ ] T019 [P] [US2] Write unit test for clockwise sequential order in tests/unit/AnalogClock.test.js (verify angles increase from 0 to 9)
-- [ ] T020 [P] [US2] Write visual regression test for rotated clock in tests/e2e/clock-rotation.spec.js (snapshot with 5 at top, 0 at bottom)
+- [X] T018 [P] [US2] Write unit test for numeral angle calculation in tests/unit/AnalogClock.test.js (test angle for numeral 0 = π/2, numeral 5 = 3π/2)
+- [X] T019 [P] [US2] Write unit test for clockwise sequential order in tests/unit/AnalogClock.test.js (verify angles increase from 0 to 9)
+- [X] T020 [P] [US2] Write visual regression test for rotated clock in tests/e2e/clock-rotation.spec.js (snapshot with 5 at top, 0 at bottom)
 
 **Checkpoint**: Run tests - all new tests MUST fail. Commit tests before implementation.
 
 ### Implementation for User Story 2 (Green Phase)
 
-- [ ] T021 [US2] Update numeral angle calculation formula in src/components/AnalogClock/AnalogClock.js (change from `(i/10)*2π - π/2` to `(i/10)*2π + π/2` in calculateClockFace function)
+- [X] T021 [US2] Update numeral angle calculation formula in src/components/AnalogClock/AnalogClock.js (change from `(i/10)*2π - π/2` to `(i/10)*2π + π/2` in calculateClockFace function)
 
 **Checkpoint**: Run tests - all User Story 2 tests should now pass. Verify rotation visually (5 at top, 0 at bottom). Test independently.
 
 ### Refactor for User Story 2 (Refactor Phase)
 
-- [ ] T022 [US2] Extract angle calculation to named function in src/components/AnalogClock/AnalogClock.js (create calculateNumeralAngle function)
-- [ ] T023 [US2] Add JSDoc comments for angle calculation in src/components/AnalogClock/AnalogClock.js
+- [X] T022 [US2] Extract angle calculation to named function in src/components/AnalogClock/AnalogClock.js (create calculateNumeralAngle function)
+- [X] T023 [US2] Add JSDoc comments for angle calculation in src/components/AnalogClock/AnalogClock.js
 
 **Checkpoint**: Tests still pass after refactoring. User Story 2 complete and independently functional.
 

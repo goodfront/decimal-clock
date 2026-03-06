@@ -12,6 +12,17 @@ const ONES_HAND_RADIUS = 0.8;
 const ONES_HAND_WIDTH = 3;
 
 /**
+ * T022, T023: Calculate the angle for a decimal numeral with 5 at top, 0 at bottom
+ * @param {number} numeralValue - Numeral value (0-9)
+ * @returns {number} Angle in radians
+ */
+function calculateNumeralAngle(numeralValue) {
+  // Formula: (i / 10) × 2π + π/2
+  // This places 0 at bottom (π/2 = 90°) and 5 at top (3π/2 = 270°)
+  return (numeralValue / NUMERAL_COUNT) * 2 * Math.PI + Math.PI / 2;
+}
+
+/**
  * Creates an analog clock controller
  * @param {HTMLCanvasElement} canvas - Canvas element for rendering
  * @returns {Object} Controller with render, resize, and destroy methods
@@ -27,8 +38,7 @@ export function createAnalogClock(canvas) {
 
     const numerals = [];
     for (let i = 0; i < NUMERAL_COUNT; i++) {
-      // 0 is at bottom (270° in standard coords = 0° for us)
-      const angle = (i / NUMERAL_COUNT) * 2 * Math.PI - Math.PI / 2;
+      const angle = calculateNumeralAngle(i); // T022: Use extracted function
       numerals.push({
         value: i,
         angle,
